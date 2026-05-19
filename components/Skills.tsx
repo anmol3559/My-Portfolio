@@ -1,0 +1,114 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
+const skillRows: { label: string; icon: string }[][] = [
+  [
+    { label: 'HTML', icon: '🌐' },
+    { label: 'CSS', icon: '🎨' },
+    { label: 'JavaScript', icon: '⚡' },
+    { label: 'React', icon: '⚛️' },
+    { label: 'Tailwind CSS', icon: '💨' },
+    { label: 'Node.js', icon: '🟢' },
+    { label: 'Java', icon: '☕' },
+    { label: 'DSA', icon: '🔢' },
+  ],
+  [
+    { label: 'TypeScript', icon: '🔷' },
+    { label: 'Next.js', icon: '▲' },
+    { label: 'REST APIs', icon: '🔗' },
+    { label: 'Git & GitHub', icon: '🐙' },
+    { label: 'PostgreSQL', icon: '🐘' },
+    { label: 'MongoDB', icon: '🍃' },
+    { label: 'Docker', icon: '🐳' },
+    { label: 'Redux', icon: '🔄' },
+  ],
+  [
+    { label: 'HTML', icon: '🌐' },
+    { label: 'CSS', icon: '🎨' },
+    { label: 'JavaScript', icon: '⚡' },
+    { label: 'React', icon: '⚛️' },
+    { label: 'Tailwind CSS', icon: '💨' },
+    { label: 'Node.js', icon: '🟢' },
+    { label: 'Java', icon: '☕' },
+    { label: 'DSA', icon: '🔢' },
+  ],
+]
+
+function SkillBadge({ label, icon }: { label: string; icon: string }) {
+  return (
+    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card text-foreground text-sm font-mono whitespace-nowrap hover:border-primary/50 hover:bg-primary/5 transition-colors duration-200 mx-2">
+      <span role="img" aria-label={label}>{icon}</span>
+      {label}
+    </span>
+  )
+}
+
+function MarqueeRow({
+  skills,
+  direction,
+  speed,
+}: {
+  skills: { label: string; icon: string }[]
+  direction: 'left' | 'right'
+  speed: string
+}) {
+  const doubled = [...skills, ...skills]
+  return (
+    <div className="overflow-hidden w-full py-2">
+      <div
+        className={`flex w-max ${direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'}`}
+        style={{ animationDuration: speed }}
+      >
+        {doubled.map((skill, i) => (
+          <SkillBadge key={`${skill.label}-${i}`} {...skill} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default function Skills() {
+  return (
+    <section id="skills" className="py-24 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 mb-14 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <span className="font-mono text-primary text-sm tracking-widest uppercase mb-4 block">
+            Tech Stack
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground text-balance">
+            Skills &amp; Technologies
+          </h2>
+          <p className="text-muted-foreground mt-4 text-lg leading-relaxed max-w-xl mx-auto">
+            A curated set of tools I use to build fast, scalable, and elegant software.
+          </p>
+        </motion.div>
+      </div>
+
+      {/* Gradient masks */}
+      <div className="relative">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-0 top-0 bottom-0 w-32 z-10"
+          style={{ background: 'linear-gradient(to right, oklch(0.08 0 0), transparent)' }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute right-0 top-0 bottom-0 w-32 z-10"
+          style={{ background: 'linear-gradient(to left, oklch(0.08 0 0), transparent)' }}
+        />
+
+        <div className="flex flex-col gap-3">
+          <MarqueeRow skills={skillRows[0]} direction="left" speed="30s" />
+          <MarqueeRow skills={skillRows[1]} direction="right" speed="35s" />
+          <MarqueeRow skills={skillRows[2]} direction="left" speed="40s" />
+        </div>
+      </div>
+    </section>
+  )
+}
