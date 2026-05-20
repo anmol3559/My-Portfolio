@@ -4,11 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.08 0 0);
+  --background: #000000;
   --foreground: oklch(0.95 0 0);
-  --card: oklch(0.11 0 0);
+  --card: oklch(0.08 0 0);
   --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.11 0 0);
+  --popover: oklch(0.08 0 0);
   --popover-foreground: oklch(0.95 0 0);
   --primary: oklch(0.65 0.22 293);
   --primary-foreground: oklch(0.08 0 0);
@@ -104,6 +104,60 @@
   animation: marquee-left 40s linear infinite;
 }
 
+/* Star twinkle */
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.4);
+  }
+}
+
+@keyframes twinkle-slow {
+
+  0%,
+  100% {
+    opacity: 0.08;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(1.6);
+  }
+}
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    opacity: 0.12;
+  }
+
+  50% {
+    opacity: 0.22;
+  }
+}
+
+/* Cursor blink */
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
 /* Purple glow utility */
 .glow-purple {
   box-shadow: 0 0 30px oklch(0.65 0.22 293 / 0.3), 0 0 60px oklch(0.65 0.22 293 / 0.1);
@@ -115,17 +169,4 @@
 
 .text-glow-purple {
   text-shadow: 0 0 40px oklch(0.65 0.22 293 / 0.5);
-}
-
-/* Cursor blink for typing effect */
-@keyframes blink {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
 }
