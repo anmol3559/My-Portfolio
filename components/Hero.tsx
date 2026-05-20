@@ -1,13 +1,65 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowDown, Github, Linkedin } from 'lucide-react'
 
+const TYPING_PHRASES = [
+  'Full-Stack Developer',
+  'Java & DSA Problem Solver',
+  'React & Tailwind Enthusiast',
+]
+
+const TYPING_SPEED = 70   // ms per character
+const DELETING_SPEED = 40 // ms per character
+const PAUSE_AFTER_TYPE = 1800  // ms pause before deleting
+const PAUSE_AFTER_DELETE = 400 // ms pause before typing next
+
+function useTypingEffect(phrases: string[]) {
+  const [displayed, setDisplayed] = useState('')
+  const [phraseIndex, setPhraseIndex] = useState(0)
+  const [charIndex, setCharIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    const current = phrases[phraseIndex]
+
+    if (!isDeleting && charIndex < current.length) {
+      const t = setTimeout(() => setCharIndex((c) => c + 1), TYPING_SPEED)
+      setDisplayed(current.slice(0, charIndex + 1))
+      return () => clearTimeout(t)
+    }
+
+    if (!isDeleting && charIndex === current.length) {
+      const t = setTimeout(() => setIsDeleting(true), PAUSE_AFTER_TYPE)
+      return () => clearTimeout(t)
+    }
+
+    if (isDeleting && charIndex > 0) {
+      const t = setTimeout(() => setCharIndex((c) => c - 1), DELETING_SPEED)
+      setDisplayed(current.slice(0, charIndex - 1))
+      return () => clearTimeout(t)
+    }
+
+    if (isDeleting && charIndex === 0) {
+      const t = setTimeout(() => {
+        setIsDeleting(false)
+        setPhraseIndex((i) => (i + 1) % phrases.length)
+      }, PAUSE_AFTER_DELETE)
+      return () => clearTimeout(t)
+    }
+  }, [charIndex, isDeleting, phraseIndex, phrases])
+
+  return displayed
+}
+
 export default function Hero() {
+  const typed = useTypingEffect(TYPING_PHRASES)
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 pt-8"
     >
       {/* Glowing background blob */}
       <div
@@ -16,68 +68,53 @@ export default function Hero() {
       >
         <div className="w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] bg-primary animate-pulse" />
       </div>
-      {/* Secondary smaller blob */}
+      {/* Secondary blob */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute top-1/4 right-1/4 w-[300px] h-[300px] rounded-full opacity-10 blur-[80px] bg-primary"
       />
 
-      {/* Nav bar */}
-      <motion.nav
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-6"
-      >
-        <span className="font-mono text-sm text-muted-foreground tracking-widest uppercase">
-          Dev.Portfolio
-        </span>
-        <div className="flex items-center gap-6">
-          {['Projects', 'Skills', 'About', 'Contact'].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
-      </motion.nav>
-
       {/* Hero content */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto">
+      <div className="relative z-10 text-center max-w-5xl mx-auto w-full">
+        {/* Typing badge */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          className="mb-6"
         >
-          <span className="inline-block font-mono text-primary text-sm tracking-widest uppercase mb-6 border border-primary/30 rounded-full px-4 py-1.5 bg-primary/5">
-            Full-Stack Developer
+          <span className="inline-flex items-center gap-2 font-mono text-primary text-sm tracking-widest uppercase border border-primary/30 rounded-full px-4 py-1.5 bg-primary/5 min-w-[240px] justify-center">
+            <span>{typed}</span>
+            <span
+              aria-hidden="true"
+              className="inline-block w-[2px] h-[1em] bg-primary align-middle animate-[blink_1s_step-end_infinite]"
+            />
           </span>
         </motion.div>
 
+        {/* Main heading */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none text-foreground text-glow-purple mb-6 text-balance"
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none text-foreground text-glow-purple mb-6 text-balance"
         >
           Architecting{' '}
           <span className="text-primary">Seamless</span>{' '}
           Web Experiences
         </motion.h1>
 
+        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.55 }}
-          className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10 text-balance"
+          className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10 text-balance px-4"
         >
-          Architecting Seamless Web Experiences &amp; Robust Systems — turning complex ideas into
-          elegant, high-performance solutions.
+          Turning complex ideas into elegant, high-performance solutions — one commit at a time.
         </motion.p>
 
+        {/* CTA buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
