@@ -1,32 +1,36 @@
-import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
-import Skills from '@/components/Skills'
-import Projects from '@/components/Projects'
-import About from '@/components/About'
-import Contact from '@/components/Contact'
-import StarField from '@/components/StarField'
+// Pure CSS star field — no canvas, no library.
+// Each star is a tiny absolutely-positioned dot with a randomised
+// twinkle animation duration + delay so they feel organic.
 
-export default function Home() {
+const STARS = Array.from({ length: 120 }, (_, i) => ({
+    id: i,
+    top: `${(Math.sin(i * 137.508) * 0.5 + 0.5) * 100}%`,
+    left: `${(Math.cos(i * 137.508 * 1.618) * 0.5 + 0.5) * 100}%`,
+    size: i % 5 === 0 ? 2 : 1,
+    duration: `${3 + (i % 7)}s`,
+    delay: `${(i % 11) * 0.4}s`,
+    slow: i % 3 === 0,
+}))
+
+export default function StarField() {
     return (
-        <>
-            {/* Fixed star particle field — z-0, sits on pure black background */}
-            <StarField />
-
-            {/* Fixed navbar — z-50 */}
-            <Navbar />
-
-            {/*
-        No z-index on <main> to avoid creating a stacking context that
-        could clip content or cover the fixed star field.
-        pt-16 offsets below the fixed navbar (~64px).
-      */}
-            <main className="relative pt-16">
-                <Hero />
-                <Skills />
-                <Projects />
-                <About />
-                <Contact />
-            </main>
-        </>
+        <div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+        >
+            {STARS.map((star) => (
+                <span
+                    key={star.id}
+                    className="absolute rounded-full bg-white"
+                    style={{
+                        top: star.top,
+                        left: star.left,
+                        width: star.size,
+                        height: star.size,
+                        animation: `${star.slow ? 'twinkle-slow' : 'twinkle'} ${star.duration} ${star.delay} ease-in-out infinite`,
+                    }}
+                />
+            ))}
+        </div>
     )
 }
