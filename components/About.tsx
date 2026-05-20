@@ -23,8 +23,8 @@ const interests = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6">
-      <div className="max-w-5xl mx-auto">
+    <section id="about" className="py-28 md:py-36 px-6">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
