@@ -53,8 +53,8 @@ function MarqueeRow({
   direction: 'left' | 'right'
   speed: string
 }) {
-  // Repeat 6× so the track is always much wider than any viewport;
-  // translateX(-50%) then loops perfectly back to the start.
+  // Repeat 6× so the track is always wider than any viewport —
+  // translateX(-50%) then loops seamlessly with no visible gap.
   const repeated = Array.from({ length: 6 }, () => skills).flat()
   return (
     <div className="overflow-hidden w-full py-2">
@@ -72,7 +72,7 @@ function MarqueeRow({
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-28 md:py-36 overflow-hidden">
+    <section id="skills" className="relative py-16 md:py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -92,24 +92,10 @@ export default function Skills() {
         </motion.div>
       </div>
 
-      {/* Gradient masks */}
-      <div className="relative">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-0 top-0 bottom-0 w-32 z-10"
-          style={{ background: 'linear-gradient(to right, oklch(0.08 0 0), transparent)' }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-0 bottom-0 w-32 z-10"
-          style={{ background: 'linear-gradient(to left, oklch(0.08 0 0), transparent)' }}
-        />
-
-        <div className="flex flex-col gap-3">
-          <MarqueeRow skills={skillRows[0]} direction="left" speed="30s" />
-          <MarqueeRow skills={skillRows[1]} direction="right" speed="35s" />
-          <MarqueeRow skills={skillRows[2]} direction="left" speed="40s" />
-        </div>
+      <div className="flex flex-col gap-3">
+        <MarqueeRow skills={skillRows[0]} direction="left" speed="30s" />
+        <MarqueeRow skills={skillRows[1]} direction="right" speed="35s" />
+        <MarqueeRow skills={skillRows[2]} direction="left" speed="40s" />
       </div>
     </section>
   )
