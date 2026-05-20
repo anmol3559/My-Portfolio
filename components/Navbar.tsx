@@ -24,11 +24,10 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-          scrolled
+        className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
             ? 'bg-background/70 backdrop-blur-md border-b border-border/60 shadow-lg shadow-black/20'
             : 'bg-background/40 backdrop-blur-sm'
-        }`}
+          }`}
       >
         <nav
           className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
