@@ -53,14 +53,16 @@ function MarqueeRow({
   direction: 'left' | 'right'
   speed: string
 }) {
-  const doubled = [...skills, ...skills]
+  // Repeat 6× so the track is always much wider than any viewport;
+  // translateX(-50%) then loops perfectly back to the start.
+  const repeated = Array.from({ length: 6 }, () => skills).flat()
   return (
     <div className="overflow-hidden w-full py-2">
       <div
         className={`flex w-max ${direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'}`}
         style={{ animationDuration: speed }}
       >
-        {doubled.map((skill, i) => (
+        {repeated.map((skill, i) => (
           <SkillBadge key={`${skill.label}-${i}`} {...skill} />
         ))}
       </div>
@@ -70,8 +72,8 @@ function MarqueeRow({
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 mb-14 text-center">
+    <section id="skills" className="py-28 md:py-36 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
