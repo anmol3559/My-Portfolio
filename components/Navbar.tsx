@@ -24,9 +24,9 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
-            ? 'bg-background/70 backdrop-blur-md border-b border-border/60 shadow-lg shadow-black/20'
-            : 'bg-background/40 backdrop-blur-sm'
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${scrolled
+            ? 'bg-background/80 backdrop-blur-md border-b border-border/60 shadow-lg shadow-black/30'
+            : 'bg-transparent backdrop-blur-sm'
           }`}
       >
         <nav
