@@ -104,32 +104,32 @@
   animation: marquee-left 40s linear infinite;
 }
 
-/* Star twinkle */
-@keyframes twinkle {
+/* Star twinkle — namespaced to avoid Tailwind animation utility collisions */
+@keyframes cosmic-twinkle {
 
   0%,
   100% {
-    opacity: 0.15;
+    opacity: 0.12;
     transform: scale(1);
   }
 
   50% {
-    opacity: 0.6;
-    transform: scale(1.4);
+    opacity: 0.35;
+    transform: scale(1.1);
   }
 }
 
-@keyframes twinkle-slow {
+@keyframes cosmic-twinkle-slow {
 
   0%,
   100% {
-    opacity: 0.08;
+    opacity: 0.06;
     transform: scale(1);
   }
 
   50% {
-    opacity: 0.4;
-    transform: scale(1.6);
+    opacity: 0.2;
+    transform: scale(1.08);
   }
 }
 
