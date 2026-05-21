@@ -132,10 +132,10 @@ export default function Contact() {
 
             {[
               {
-                href: 'mailto:hello@example.com',
+                href: 'mailto:anmoltyagi3559@gmail.com',
                 Icon: Mail,
                 label: 'Email',
-                sub: 'hello@example.com',
+                sub: 'anmoltyagi3559 [at] gmail [dot] com', // Isse bots scan nahi kar payenge
               },
               {
                 href: 'https://github.com',
