@@ -25,8 +25,8 @@ export default function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${scrolled
-            ? 'bg-background/80 backdrop-blur-md border-b border-border/60 shadow-lg shadow-black/30'
-            : 'bg-transparent backdrop-blur-sm'
+          ? 'bg-background/80 backdrop-blur-md border-b border-border/60 shadow-lg shadow-black/30'
+          : 'bg-transparent backdrop-blur-sm'
           }`}
       >
         <nav
@@ -38,7 +38,7 @@ export default function Navbar() {
             href="#hero"
             className="font-mono text-sm text-muted-foreground tracking-widest uppercase hover:text-primary transition-colors duration-200"
           >
-            Dev.Portfolio
+            ANMOL TYAGI
           </a>
 
           {/* Desktop links */}
