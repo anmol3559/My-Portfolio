@@ -138,16 +138,16 @@ export default function Contact() {
                 sub: 'anmoltyagi3559 [at] gmail [dot] com', // Isse bots scan nahi kar payenge
               },
               {
-                href: 'https://github.com',
+                href: 'https://github.com/anmol3559',
                 Icon: Github,
                 label: 'GitHub',
-                sub: 'github.com/yourhandle',
+                sub: 'github.com/anmol3559',
               },
               {
-                href: 'https://linkedin.com',
+                href: 'https://linkedin.com/in/anmol-tyagi-22872137b/',
                 Icon: Linkedin,
                 label: 'LinkedIn',
-                sub: 'linkedin.com/in/yourhandle',
+                sub: 'linkedin.com/in/anmol-tyagi-22872137b',
               },
             ].map(({ href, Icon, label, sub }) => (
               <a
