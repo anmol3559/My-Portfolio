@@ -104,32 +104,33 @@
   animation: marquee-left 40s linear infinite;
 }
 
-/* Star twinkle — namespaced to avoid Tailwind animation utility collisions */
-@keyframes cosmic-twinkle {
+/* Star twinkle — named nebula-drift* to guarantee zero collision with
+   Tailwind core, tw-animate-css, or any other animation library.      */
+@keyframes nebula-drift {
 
   0%,
   100% {
-    opacity: 0.12;
+    opacity: 0.1;
     transform: scale(1);
   }
 
   50% {
-    opacity: 0.35;
-    transform: scale(1.1);
+    opacity: 0.3;
+    transform: scale(1.07);
   }
 }
 
-@keyframes cosmic-twinkle-slow {
+@keyframes nebula-drift-slow {
 
   0%,
   100% {
-    opacity: 0.06;
+    opacity: 0.04;
     transform: scale(1);
   }
 
   50% {
-    opacity: 0.2;
-    transform: scale(1.08);
+    opacity: 0.16;
+    transform: scale(1.05);
   }
 }
 

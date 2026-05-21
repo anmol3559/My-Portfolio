@@ -34,7 +34,7 @@ export default function StarField() {
                         width: star.size,
                         height: star.size,
                         backgroundColor: STAR_COLOR,
-                        animation: `${star.slow ? 'cosmic-twinkle-slow' : 'cosmic-twinkle'} ${star.duration} ${star.delay} ease-in-out infinite`,
+                        animation: `${star.slow ? 'nebula-drift-slow' : 'nebula-drift'} ${star.duration} ${star.delay} ease-in-out infinite`,
                     }}
                 />
             ))}
