@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
+      className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center pt-20 pb-10 overflow-hidden"
     >
       {/* Subtle hero glow — very soft, diffused, eye-friendly */}
       <div
@@ -77,7 +77,7 @@ export default function Hero() {
           className="flex items-center justify-center gap-5 mt-10"
         >
           <a
-            href="https://github.com"
+            href="https://github.com/anmol3559"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -86,7 +86,7 @@ export default function Hero() {
             <Github size={20} />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://linkedin.com/in/anmol-tyagi-22872137b/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
