@@ -57,8 +57,9 @@ export default function Navbar() {
           {/* Resume button + hamburger */}
           <div className="flex items-center gap-3">
             <a
-              href="/resume.pdf"
-              download
+              href="/resume"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium rounded-lg border border-primary/50 text-primary hover:bg-primary/10 hover:border-primary transition-all duration-200 glow-purple-sm"
             >
               <Download size={13} />
@@ -103,13 +104,14 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="/resume.pdf"
-                download
+                href="/resume"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={closeMenu}
                 className="mt-3 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-lg border border-primary/50 text-primary hover:bg-primary/10 transition-all duration-200"
               >
                 <Download size={14} />
-                Download Resume
+                View Resume
               </a>
             </nav>
           </motion.div>
