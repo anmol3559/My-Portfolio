@@ -5,7 +5,7 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/Page/AnnotationLayer.css'
 import 'react-pdf/dist/Page/TextLayer.css'
 
-// Configure worker — CRITICAL: prevents CDN blocking and TS errors
+// Configure worker
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
     import.meta.url
@@ -18,14 +18,14 @@ export default function PDFViewer() {
     const [error, setError] = useState<string | null>(null)
     const [containerWidth, setContainerWidth] = useState(0)
 
-    // 👈 NAYA STATE: Zoom handle karne ke liye
+    // Zoom State
     const [scale, setScale] = useState(1)
 
     useEffect(() => {
         const updateWidth = () => {
             const container = document.getElementById('pdf-container')
             if (container) {
-                setContainerWidth(container.clientWidth - 40) // 40px padding
+                setContainerWidth(container.clientWidth - 40)
             }
         }
 
@@ -79,31 +79,41 @@ export default function PDFViewer() {
             {/* PDF Document */}
             {!error && (
                 <>
-                    {/* 👈 SCROLLABLE WRAPPER: Taaki zoom hone par mobile pe left/right scroll ho sake */}
-                    <div className="w-full overflow-auto flex justify-center py-4">
-                        <Document
-                            file="/Anmol_Tyagi_Resume.pdf"
-                            onLoadSuccess={onDocumentLoadSuccess}
-                            onLoadError={onDocumentLoadError}
-                            loading={null}
-                        >
-                            {containerWidth > 0 && (
-                                <Page
-                                    pageNumber={pageNumber}
-                                    width={Math.min(containerWidth, 800)}
-                                    scale={scale} // 👈 SCALE PROP ADD KIYA
-                                    renderTextLayer={true}
-                                    renderAnnotationLayer={true}
-                                    className="rounded-lg shadow-2xl shadow-primary/20 transition-all duration-300"
-                                />
-                            )}
-                        </Document>
+                    {/* TOUCH-FRIENDLY & LEFT-CROP FIX WRAPPER */}
+                    <div
+                        className="w-full overflow-auto py-4 scroll-smooth"
+                        style={{
+                            WebkitOverflowScrolling: 'touch',
+                            touchAction: 'pan-x pan-y'
+                        }}
+                    >
+                        {/* INNER WRAPPER: Ensures left side doesn't get cut off on zoom */}
+                        <div className="w-max mx-auto px-2 md:px-0">
+                            <Document
+                                file="/Anmol_Tyagi_Resume.pdf"
+                                onLoadSuccess={onDocumentLoadSuccess}
+                                onLoadError={onDocumentLoadError}
+                                loading={null}
+                                externalLinkTarget="_blank" // Opens links in new tab
+                            >
+                                {containerWidth > 0 && (
+                                    <Page
+                                        pageNumber={pageNumber}
+                                        width={Math.min(containerWidth, 800)}
+                                        scale={scale}
+                                        renderTextLayer={true}
+                                        renderAnnotationLayer={true}
+                                        className="rounded-lg shadow-2xl shadow-primary/20 transition-all duration-300"
+                                    />
+                                )}
+                            </Document>
+                        </div>
                     </div>
 
                     {/* Controls Bar (Zoom & Navigation) */}
                     <div className="flex flex-wrap items-center justify-center gap-6 mt-2 pb-8">
 
-                        {/* 🔍 Zoom Controls (Neo-Tokyo Style) */}
+                        {/* Zoom Controls */}
                         <div className="flex items-center gap-1 p-1 rounded-lg border border-primary/30 bg-primary/5 backdrop-blur-sm">
                             <button
                                 onClick={() => setScale((s) => Math.max(0.6, s - 0.2))}
@@ -124,7 +134,7 @@ export default function PDFViewer() {
                             </button>
                         </div>
 
-                        {/* 📄 Navigation Controls (Agar multiple pages hon) */}
+                        {/* Pagination Controls */}
                         {numPages && numPages > 1 && (
                             <div className="flex items-center gap-4">
                                 <button
