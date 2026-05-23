@@ -224,13 +224,14 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Footer */}
+      {/* Sleek Footer */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        className="text-center mt-20 pt-8 border-t border-border pb-8"
+        transition={{ duration: 0.5 }}
+        // FIX: Reduced margin-top and padding to make it slim
+        className="text-center mt-12 pt-6 border-t border-border pb-6"
       >
         <p className="text-muted-foreground text-sm font-mono flex items-center justify-center gap-1.5">
           © {new Date().getFullYear()} Designed and built by Anmol
