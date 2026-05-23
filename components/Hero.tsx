@@ -2,8 +2,20 @@
 
 import { motion } from 'framer-motion'
 import { ArrowDown, Github, Linkedin } from 'lucide-react'
+import { useEffect } from 'react'
 
 export default function Hero() {
+  useEffect(() => {
+    console.log(
+      "%c🚀 Built by Anmol Tyagi | 2026 Batch",
+      "background: #000000; color: #a855f7; font-size: 14px; font-weight: bold; padding: 8px 12px; border: 1px solid #a855f7; border-radius: 6px; font-family: monospace;"
+    );
+    console.log(
+      "%cLooking for the source code? Check out my GitHub!",
+      "color: gray; font-size: 12px; font-family: monospace;"
+    );
+  }, []);
+
   return (
     <section
       id="hero"
