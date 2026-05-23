@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /resume
+
+# Note: Update with your actual domain later
+# Sitemap: https://yourdomain.com/sitemap.xml
