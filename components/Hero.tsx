@@ -7,17 +7,18 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center pt-20 pb-10 overflow-hidden"
+      // FIX: Exact height calculation taking mobile URL bars into account
+      className="relative w-full h-[100svh] min-h-[600px] flex flex-col justify-center items-center overflow-hidden pt-16"
     >
-      {/* Subtle hero glow — very soft, diffused, eye-friendly */}
+      {/* Subtle hero glow */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full blur-[220px] bg-primary"
         style={{ opacity: 0.06 }}
       />
 
-      {/* Hero content */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto">
+      {/* Hero content - Slightly pulled up to perfectly center visually */}
+      <div className="relative z-10 text-center max-w-4xl mx-auto px-4 -mt-10 md:-mt-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -34,9 +35,7 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.35 }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none text-foreground text-glow-purple mb-6 text-balance"
         >
-          Architecting{' '}
-          <span className="text-primary">Seamless</span>{' '}
-          Web Experiences
+          Architecting <span className="text-primary">Seamless</span> Web Experiences
         </motion.h1>
 
         <motion.p
@@ -45,8 +44,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.55 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10 text-balance"
         >
-          Architecting Seamless Web Experiences &amp; Robust Systems — turning complex ideas into
-          elegant, high-performance solutions.
+          Turning complex ideas into elegant, high-performance solutions.
         </motion.p>
 
         <motion.div
@@ -97,14 +95,14 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - Moved slightly up to ensure visibility */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground"
+        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground"
       >
-        <span className="font-mono text-xs tracking-widest uppercase">Scroll</span>
+        <span className="font-mono text-[10px] tracking-widest uppercase">Scroll</span>
         <ArrowDown size={14} className="animate-bounce" />
       </motion.div>
     </section>
