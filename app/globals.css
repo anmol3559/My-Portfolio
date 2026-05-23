@@ -192,3 +192,10 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(168, 85, 247, 1);
 }
+
+/* Custom Text Selection Color */
+::selection {
+  background: rgba(168, 85, 247, 0.4);
+  /* Tailwind Primary/Purple */
+  color: white;
+}
