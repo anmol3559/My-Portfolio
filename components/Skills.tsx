@@ -1,5 +1,6 @@
 'use client'
 
+// Skills section component
 import { motion } from 'framer-motion'
 
 const skillRows: { label: string; icon: string }[][] = [
