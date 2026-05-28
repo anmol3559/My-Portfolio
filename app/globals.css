@@ -193,6 +193,8 @@
   background: rgba(168, 85, 247, 1);
 }
 
+/* ... tera purana code (text-glow-purple tak) ... */
+
 /* Custom Text Selection Color */
 ::selection {
   background: rgba(168, 85, 247, 0.4);
