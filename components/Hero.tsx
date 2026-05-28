@@ -1,5 +1,6 @@
 'use client'
 
+// Hero section component
 import { motion } from 'framer-motion'
 import { ArrowDown, Github, Linkedin } from 'lucide-react'
 import { useEffect } from 'react'
