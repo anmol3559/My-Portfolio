@@ -1,3 +1,4 @@
+// Resume page component
 import type { Metadata } from 'next'
 import ResumeNavbar from '@/components/ResumeNavbar'
 import PDFWrapper from '@/components/PDFWrapper'
